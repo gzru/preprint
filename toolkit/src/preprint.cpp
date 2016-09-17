@@ -149,7 +149,11 @@ void SaveCorrectedImage(Magick::Image & image, const std::string & outmask, cons
     std::string preview = ss.str() + ".jpg";
     image.write(preview);
 
-    std::cout << outfile << "\t" << preview << "\t" << descr << std::endl;
+    std::string preview_gs = ss.str() + "_grayscale.jpg";
+    image.type(Magick::GrayscaleAlphaType);
+    image.write(preview_gs);
+
+    std::cout << outfile << "\t" << preview << "\t" << preview_gs << "\t" << descr << std::endl;
 }
 
 void MakeBase(Magick::Image & image, const std::string & outmask)
